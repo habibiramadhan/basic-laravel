@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EquipmentController;
+use App\Http\Controllers\Admin\KategoriController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +21,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('equipment', EquipmentController::class);
+    Route::patch('equipment/{equipment}/status', [EquipmentController::class, 'updateStatus'])->name('equipment.status');
+
+    Route::resource('kategori', KategoriController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -25,10 +25,18 @@
                 </li>
                 
                 <li class="nav-item mb-1">
-                    <a href="#" 
-                       class="nav-link text-white px-4 py-3 d-flex align-items-center">
+                    <a href="{{ route('admin.equipment.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.equipment.*') ? 'active' : '' }}">
                         <i class="fas fa-truck me-3"></i>
                         <span>Kelola Alat</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item mb-1">
+                    <a href="{{ route('admin.kategori.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.kategori.*') ? 'active' : '' }}">
+                        <i class="fas fa-tags me-3"></i>
+                        <span>Kategori Alat</span>
                     </a>
                 </li>
                 
