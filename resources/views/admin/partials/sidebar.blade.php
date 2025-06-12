@@ -41,16 +41,16 @@
                 </li>
                 
                 <li class="nav-item mb-1">
-                    <a href="#" 
-                       class="nav-link text-white px-4 py-3 d-flex align-items-center">
+                    <a href="{{ route('admin.booking.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.booking.*') ? 'active' : '' }}">
                         <i class="fas fa-calendar-check me-3"></i>
                         <span>Booking</span>
                     </a>
                 </li>
                 
                 <li class="nav-item mb-1">
-                    <a href="#" 
-                       class="nav-link text-white px-4 py-3 d-flex align-items-center">
+                    <a href="{{ route('admin.payment.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.payment.*') ? 'active' : '' }}">
                         <i class="fas fa-credit-card me-3"></i>
                         <span>Pembayaran</span>
                     </a>
