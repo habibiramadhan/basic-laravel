@@ -57,24 +57,24 @@
                 </li>
                 
                 <li class="nav-item mb-1">
-                    <a href="#" 
-                       class="nav-link text-white px-4 py-3 d-flex align-items-center">
+                    <a href="{{ route('admin.customer.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.customer.*') ? 'active' : '' }}">
                         <i class="fas fa-users me-3"></i>
                         <span>Customer</span>
                     </a>
                 </li>
                 
                 <li class="nav-item mb-1">
-                    <a href="#" 
-                       class="nav-link text-white px-4 py-3 d-flex align-items-center">
+                    <a href="{{ route('admin.report.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.report.*') ? 'active' : '' }}">
                         <i class="fas fa-chart-bar me-3"></i>
                         <span>Laporan</span>
                     </a>
                 </li>
                 
                 <li class="nav-item mb-1">
-                    <a href="#" 
-                       class="nav-link text-white px-4 py-3 d-flex align-items-center">
+                    <a href="{{ route('admin.settings.index') }}" 
+                       class="nav-link text-white px-4 py-3 d-flex align-items-center {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                         <i class="fas fa-cog me-3"></i>
                         <span>Pengaturan</span>
                     </a>

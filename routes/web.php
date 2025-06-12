@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\SettingsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,9 +20,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+        
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -41,6 +47,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('payment/{payment}/status', [PaymentController::class, 'updateStatus'])->name('payment.status');
     Route::post('payment/bulk-action', [PaymentController::class, 'bulkAction'])->name('payment.bulk');
     Route::get('payment/export/csv', [PaymentController::class, 'export'])->name('payment.export');
+
+    Route::resource('customer', CustomerController::class)->only(['index', 'show']);
+    Route::get('customer/{customer}/whatsapp', [CustomerController::class, 'whatsapp'])->name('customer.whatsapp');
+
+    Route::prefix('report')->name('report.')->group(function () {
+        Route::get('/', [ReportController::class, 'index'])->name('index');
+        Route::post('/booking', [ReportController::class, 'bookingReport'])->name('booking');
+        Route::post('/equipment', [ReportController::class, 'equipmentReport'])->name('equipment');
+        Route::post('/payment', [ReportController::class, 'paymentReport'])->name('payment');
+        Route::post('/customer', [ReportController::class, 'customerReport'])->name('customer');
+    });
+
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 });
 
 require __DIR__.'/auth.php';

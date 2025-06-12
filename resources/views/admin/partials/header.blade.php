@@ -32,12 +32,12 @@
                         
                         <ul class="dropdown-menu dropdown-menu-end shadow">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                     <i class="fas fa-user-circle me-2"></i>Profile
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('admin.settings.index') }}">
                                     <i class="fas fa-cog me-2"></i>Pengaturan
                                 </a>
                             </li>
